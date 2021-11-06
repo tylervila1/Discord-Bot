@@ -1,4 +1,3 @@
-import os
 import discord
 from discord.ext import commands
 import random as r
@@ -50,7 +49,7 @@ def bot_commands():
 
 #ask a random question command.
     @bot.command()
-    async def botterman (ctx, *question):
+    async def botterman (ctx):
         responses = ['It is certain.',
                      'It is decidedly so.',
                      'Without a doubt.',
@@ -109,6 +108,15 @@ def bot_commands():
         async with aiohttp.ClientSession() as cs:
             async with cs.get("https://picsum.photos/400/400") as r:
                 await ctx.send(r.url)
+
+    @bot.command()
+    async def roll_dice(ctx):
+        min = 1
+        max = 100
+        await ctx.send(f'{r.randint(min, max)}')
+        
+
+
 
     bot.run(token)
 bot_commands()
